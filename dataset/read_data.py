@@ -6,9 +6,10 @@ def load(path,normalization=False):
   file = open(path,encoding='utf-8')
   x,y=[],[]
   for line in file.readlines():
-    label, features = line.strip().split('\t')
-    x.append([float(i) for i in features.split(',')])
-    y.append([int(float(label))])
+    if len(line)>1:
+      label, features = line.strip().split('\t')
+      x.append([float(i) for i in features.split(',')])
+      y.append([int(float(label))])
   features = np.array(x)
   labels = np.array(y)
   feature_label = np.hstack((features,labels))
